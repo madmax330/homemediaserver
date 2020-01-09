@@ -1,0 +1,28 @@
+{% extends 'users/template.html' %}
+
+{% block title %}Home Cloud{% endblock %}
+
+
+{% block content %}
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-xs-12 col-sm-4">
+                <a href="{% url 'users:videos' %}" class="btn btn-primary btn-block" style="min-height: 250px">
+                    <span class="h2" style="line-height: 250px"><i class="nc-icon nc-tv-2" style="margin-right: 16px"></i> Videos</span>
+                </a>
+            </div>
+            <div class="col-xs-12 col-sm-4">
+                <a href="{% url 'users:photos' %}" class="btn btn-primary btn-block" style="min-height: 250px">
+                    <span class="h2" style="line-height: 250px"><i class="nc-icon nc-camera-20" style="margin-right: 16px"></i> Photos</span>
+                </a>
+            </div>
+            <div class="col-xs-12 col-sm-4">
+                <a href="{% url 'users:documents' %}" class="btn btn-primary btn-block" style="min-height: 250px">
+                    <span class="h2" style="line-height: 250px"><i class="nc-icon nc-single-copy-04" style="margin-right: 16px"></i> Documents</span>
+                </a>
+            </div>
+        </div>
+    </div>
+{% endblock %}
+
+

@@ -1,0 +1,88 @@
+{% extends 'users/template.html' %}
+
+{% block content %}
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-sm-12">
+                {% if message %}
+                    <div class="alert alert-{{ message.status }}">
+                        <button type="button" aria-hidden="true" class="close" data-dismiss="alert">
+                            <i class="nc-icon nc-simple-remove"></i>
+                        </button>
+                        <span>{{ message.message }}</span>
+                    </div>
+                {% endif %}
+                {% if form.errors %}
+                    <div class="alert alert-danger">
+                        <button type="button" aria-hidden="true" class="close" data-dismiss="alert">
+                            <i class="nc-icon nc-simple-remove"></i>
+                        </button>
+                        <span>{{ form.errors }}</span>
+                    </div>
+                {% endif %}
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-sm-6">
+                <div class="card stacked-form">
+                    <div class="card-header ">
+                        <h4 class="card-title">
+                            {% if video %}
+                                Modifier {{ video.name }}
+                            {% else %}
+                                Nouvelle video
+                            {% endif %}
+                        </h4>
+                    </div>
+                    <div class="card-body ">
+                        {% if video %}
+                            <form method="post" action="{% url 'users:video_form' key=video.id %}">
+                                {% csrf_token %}
+                                <div class="form-group">
+                                    <label>Name</label>
+                                    {{ form.name }}
+                                </div>
+                                <div class="form-group">
+                                    <label>Type</label>
+                                    <select name="type" class="selectpicker" data-title="Video type"
+                                            data-style="btn-default btn-outline" data-menu-style="dropdown-blue">
+                                        <option value="movie">Movie</option>
+                                        <option value="series">Series</option>
+                                        <option value="other">Other</option>
+                                    </select>
+                                </div>
+                                <button class="btn btn-success" type="submit">Sauvegarder</button>
+                            </form>
+                        {% else %}
+                            <form method="post" action="{% url 'users:video_form' key=0 %}"
+                                  enctype="multipart/form-data">
+                                {% csrf_token %}
+                                <div class="form-group">
+                                    <label>Name</label>
+                                    <input type="text" name="name" class="form-control"/>
+                                    <small class="form-text text-muted">* Leave name blank to use file name.</small>
+                                </div>
+                                <div class="form-group">
+                                    <label>Type</label>
+                                    <select name="type" class="selectpicker" data-title="Video type"
+                                            data-style="btn-default btn-outline" data-menu-style="dropdown-blue">
+                                        <option value="movie">Movie</option>
+                                        <option value="series">Series</option>
+                                        <option value="other">Other</option>
+                                    </select>
+                                </div>
+                                <div class="form-group">
+                                    <label>Video</label>
+                                    {{ form.video }}
+                                </div>
+                                <button class="btn btn-success" type="submit">Enregistrer</button>
+                            </form>
+                        {% endif %}
+                    </div>
+                </div>
+
+            </div>
+        </div>
+        <a href="{% url 'users:videos' %}" class="btn btn-lg btn-default">Return to video list</a>
+    </div>
+{% endblock %}

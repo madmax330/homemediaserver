@@ -1,0 +1,17 @@
+# os files
+.DS_Store
+
+# database
+db.sqlite3
+
+# pyc files
+*/__pycache__
+*.pyc
+
+# media
+/static
+/media
+*/migrations
+
+# ide files
+/.idea

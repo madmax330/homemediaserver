@@ -1,0 +1,17 @@
+{% extends 'users/template.html' %}
+
+{% block content %}
+    <div class="container">
+        <h2>{{ video.name }}</h2>
+        {% if video.extension == 'mp4' %}
+            <video width="640" height="480" controls>
+                <source src="{{ video.video.url }}" type="video/mp4">
+                Video cannot be viewed.
+            </video>
+        {% else %}
+            <object data="{{ video.video.url }}" width="360" height="250">
+                <param name="src" value="{{ video.video.url }}" />
+            </object>
+        {% endif %}
+    </div>
+{% endblock %}

@@ -1,0 +1,78 @@
+{% extends 'users/template.html' %}
+
+{% block content %}
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-sm-12">
+                {% if message %}
+                    <div class="alert alert-{{ message.status }}">
+                        <button type="button" aria-hidden="true" class="close" data-dismiss="alert">
+                            <i class="nc-icon nc-simple-remove"></i>
+                        </button>
+                        <span>{{ message.message }}</span>
+                    </div>
+                {% endif %}
+                {% if form.errors %}
+                    <div class="alert alert-danger">
+                        <button type="button" aria-hidden="true" class="close" data-dismiss="alert">
+                            <i class="nc-icon nc-simple-remove"></i>
+                        </button>
+                        <span>{{ form.errors }}</span>
+                    </div>
+                {% endif %}
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-sm-6">
+                <div class="card stacked-form">
+                    <div class="card-header ">
+                        <h4 class="card-title">
+                            {% if video %}
+                                Modifier {{ photo.name }}
+                            {% else %}
+                                Nouvelle photo
+                            {% endif %}
+                        </h4>
+                    </div>
+                    <div class="card-body ">
+                        {% if photo %}
+                            <form method="post" action="{% url 'users:photo_form' key=photo.id %}">
+                                {% csrf_token %}
+                                <div class="form-group">
+                                    <label>Name</label>
+                                    {{ form.name }}
+                                </div>
+                                <div class="form-group">
+                                    <label>Group</label>
+                                    {{ form.occasion }}
+                                </div>
+                                <button class="btn btn-success" type="submit">Sauvegarder</button>
+                            </form>
+                        {% else %}
+                            <form method="post" action="{% url 'users:photo_form' key=0 %}"
+                                  enctype="multipart/form-data">
+                                {% csrf_token %}
+                                <div class="form-group">
+                                    <label>Name</label>
+                                    <input type="text" name="name" class="form-control"/>
+                                    <small class="form-text text-muted">* Leave name blank to use file name.</small>
+                                </div>
+                                <div class="form-group">
+                                    <label>Occasion</label>
+                                    {{ form.occasion }}
+                                </div>
+                                <div class="form-group">
+                                    <label>Photo</label>
+                                    {{ form.photo }}
+                                </div>
+                                <button class="btn btn-success" type="submit">Enregistrer</button>
+                            </form>
+                        {% endif %}
+                    </div>
+                </div>
+
+            </div>
+        </div>
+        <a href="{% url 'users:photos' %}" class="btn btn-lg btn-default">Return to photo gallery</a>
+    </div>
+{% endblock %}

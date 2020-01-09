@@ -1,0 +1,68 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    {% load staticfiles %}
+    <meta charset="utf-8"/>
+    <link rel="apple-touch-icon" sizes="76x76" href="{% static 'home/img/apple-icon.png' %}">
+    <link rel="icon" type="image/png" href="{% static 'home/img/favicon.ico' %}">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1"/>
+    <title>Local cloud storage</title>
+    <meta content='width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0, shrink-to-fit=no'
+          name='viewport'/>
+    <!--     Fonts and icons     -->
+    <link href="https://fonts.googleapis.com/css?family=Montserrat:400,700,200" rel="stylesheet"/>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/latest/css/font-awesome.min.css"/>
+    <!-- CSS Files -->
+    <link href="{% static 'home/css/bootstrap.min.css' %}" rel="stylesheet"/>
+    <link href="{% static 'home/css/light-bootstrap-dashboard.css' %}" rel="stylesheet"/>
+</head>
+
+<body>
+<div class="wrapper wrapper-full-page">
+    <div class="full-page lock-page" data-color="blue" data-image="{% static 'home/img/bg4.jpg' %}">
+        <!--   you can change the color of the filter page using: data-color="blue | azure | green | orange | red | purple" -->
+        <div class="content">
+            <div class="container">
+                <div class="col-md-4 ml-auto mr-auto">
+                    <form action="{% url 'home:index' %}" method="post">
+                        <div class="card card-lock text-center card-plain">
+                            <div class="card-header ">
+                                <div class="author">
+                                    <img class="avatar" src="{% static 'home/img/logo.png' %}" alt="...">
+                                </div>
+                            </div>
+                            <div class="card-body ">
+                                <h4 class="card-title">Connexion</h4>
+                                {% if error %}
+                                    <div class="alert alert-danger">
+                                        <span>
+                                            {{ error }}
+                                        </span>
+                                    </div>
+                                {% endif %}
+                                {% csrf_token %}
+                                <div class="form-group">
+                                    <input type="password" name="password" required placeholder="Enter Password"
+                                           class="form-control">
+                                </div>
+                            </div>
+                            <div class="card-footer ">
+                                <button type="submit" class="btn btn-info btn-round">Se connecter</button>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+</body>
+<!--   Core JS Files   -->
+<script src="{% static 'home/js/core/jquery.3.2.1.min.js' %}" type="text/javascript"></script>
+<script src="{% static 'home/js/core/popper.min.js' %}" type="text/javascript"></script>
+<script src="{% static 'home/js/core/bootstrap.min.js' %}" type="text/javascript"></script>
+<!-- Control Center for Now Ui Dashboard: parallax effects, scripts for the example pages etc -->
+<script src="{% static 'home/js/light-bootstrap-dashboard.js' %}" type="text/javascript"></script>
+
+</html>

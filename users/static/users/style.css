@@ -1,0 +1,84 @@
+body {
+    background-color: #f2f2f2;
+}
+
+.right{
+    float: right;
+}
+
+.left{
+    float: left;
+}
+
+.float-container{
+    display: block;
+    overflow: hidden;
+}
+
+th {
+    text-align: center;
+    font-size: 14pt;
+}
+
+td {
+    text-align: center;
+    text-transform: capitalize;
+}
+
+.table-hover tbody tr:hover td, .table-hover tbody tr:hover th {
+  background-color: #FFFFFF;
+}
+
+.pictures-container h2 {
+    text-align: center;
+    font-size: 18pt;
+    padding-bottom: 1.5%;
+    padding-top: 1%;
+
+}
+.pictures-container p{
+    text-align: center;
+}
+
+.pictures-container a:hover img {
+    opacity: 0.70;
+}
+
+
+.pictures-container a:hover {
+    text-decoration: none;
+
+}
+
+.table-hover tr:hover {
+    text-decoration: none;
+}
+
+.dataTables_length {
+    display: none;
+}
+
+.col-sm-5, .col-sm-7 {
+    display: none;
+}
+
+#videos-table_filter label, #documents-table_filter label {
+    font-weight: bold;
+}
+
+#videos-table tr{
+    cursor: pointer;
+}
+
+.container-fluid {
+    text-transform: capitalize;
+}
+
+#videos-table_wrapper .row:first-child {
+    margin-left: auto;
+    margin-right: auto;
+}
+
+h2 {
+    text-align: center;
+}
